@@ -106,4 +106,21 @@ export class CategoriasService {
       .findOneAndUpdate({ categoria }, { $set: categoriaEncontrada })
       .exec();
   }
+
+  async consultarCategoriaDoJogador(idJogador: any): Promise<Categoria> {
+    const jogadores = await this.jogadoresService.consultarTodosJogadores();
+    const jogadorFilter = jogadores.filter((jogador) =>
+      jogador._id.equals(idJogador),
+    );
+
+    if (jogadorFilter.length === 0) {
+      throw new BadRequestException(`O id ${idJogador} não é um jogador!`);
+    }
+
+    return await this.categoriaModel
+      .findOne()
+      .where('jogadores')
+      .in(idJogador)
+      .exec();
+  }
 }

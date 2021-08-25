@@ -1,3 +1,7 @@
 export enum DesafioStatus {
-  realizado = 'REALIZADO',
+  REALIZADO = 'REALIZADO',
+  PENDENTE = 'PENDENTE',
+  ACEITO = 'ACEITO',
+  NEGADO = 'NEGADO',
+  CANCELADO = 'CANCELADO',
 }
